@@ -5,6 +5,9 @@ public class Health : MonoBehaviour
 {
     [Header("Health")]
     [SerializeField] private float startingHealth;
+    [SerializeField] private AudioClip hurtSound;
+    [SerializeField] private AudioClip deathSound;
+    [SerializeField] private AudioClip heartCollected;
     public float currentHealth { get; private set; }
     private Animator anim;
     private bool dead;
@@ -35,6 +38,7 @@ public class Health : MonoBehaviour
 
         if (currentHealth > 0)
         {
+            SoundManager.instance.PlaySound(hurtSound);
             anim.SetTrigger("hurt");
             StartCoroutine(Invunerability());
         }
@@ -42,7 +46,7 @@ public class Health : MonoBehaviour
         {
             if (!dead)
             {
-
+                SoundManager.instance.PlaySound(deathSound);
                 anim.SetTrigger("die");
                 gameOverText.SetActive(true);
                 GetComponent<PlayerMovement>().enabled = false;
@@ -52,6 +56,7 @@ public class Health : MonoBehaviour
     }
     public void AddHealth(float _value)
     {
+        SoundManager.instance.PlaySound(heartCollected);
         currentHealth = Mathf.Clamp(currentHealth + _value, 0, startingHealth);
     }
     private IEnumerator Invunerability()

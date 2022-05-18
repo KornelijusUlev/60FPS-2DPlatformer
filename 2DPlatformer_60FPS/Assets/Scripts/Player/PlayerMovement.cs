@@ -6,6 +6,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float jumpPower;
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private LayerMask wallLayer;
+    [SerializeField] private AudioClip jumpSound;
     private Rigidbody2D body;
     private Animator anim;
     private BoxCollider2D boxCollider;
@@ -58,6 +59,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (isGrounded())
         {
+            SoundManager.instance.PlaySound(jumpSound);
             body.velocity = new Vector2(body.velocity.x, jumpPower);
             anim.SetTrigger("jump");
         }

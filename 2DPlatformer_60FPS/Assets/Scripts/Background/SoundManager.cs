@@ -5,30 +5,44 @@ using UnityEngine.UI;
 
 public class SoundManager : MonoBehaviour
 {
-    [SerializeField] Slider volumeSlider;
+    public static SoundManager instance { get; private set; }
+    private AudioSource source;
 
-    void Start()
+    private void Awake()
     {
-        if(!PlayerPrefs.HasKey("musicVolume"))
-        {
-            PlayerPrefs.SetFloat("musicVolume", 1);
-            Load();
-        }
+        instance = this;
+        source = GetComponent<AudioSource>();
     }
 
-    public void ChangeVolume()
+    public void PlaySound(AudioClip _sound)
     {
-        AudioListener.volume = volumeSlider.value;
-        Save();
+        source.PlayOneShot(_sound);
     }
 
-    private void Load()
-    {
-        volumeSlider.value = PlayerPrefs.GetFloat("musicVolume");
-    }
+    //[SerializeField] Slider volumeSlider;
 
-    private void Save()
-    {
-        PlayerPrefs.SetFloat("musicVolume", volumeSlider.value);
-    }
+    //void Start()
+    //{
+    //    if(!PlayerPrefs.HasKey("musicVolume"))
+    //    {
+    //        PlayerPrefs.SetFloat("musicVolume", 1);
+    //        Load();
+    //    }
+    //}
+
+    //public void ChangeVolume()
+    //{
+    //    AudioListener.volume = volumeSlider.value;
+    //    Save();
+    //}
+
+    //private void Load()
+    //{
+    //    volumeSlider.value = PlayerPrefs.GetFloat("musicVolume");
+    //}
+
+    //private void Save()
+    //{
+    //    PlayerPrefs.SetFloat("musicVolume", volumeSlider.value);
+    //}
 }

@@ -42,7 +42,12 @@ public class PauseMenu : MonoBehaviour
     {
         SceneManager.LoadScene("MainMenu");
     }
-    
+
+    public void RestartLevel()
+    {
+        SceneManager.LoadScene("Level1");
+    }
+
     public void QuitGame()
     {
 #if UNITY_EDITOR
