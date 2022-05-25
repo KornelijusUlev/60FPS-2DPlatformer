@@ -20,9 +20,10 @@ public class FinishLine : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        SoundManager.instance.PlaySound(finishSound);
+        
         if (collision.tag == "Player")
         {
+            SoundManager.instance.PlaySound(finishSound);
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
         else

@@ -52,14 +52,6 @@ public class Health : MonoBehaviour
                 GetComponent<PlayerMovement>().enabled = false;
                 dead = true;
             }
-            else
-            {
-                SoundManager.instance.PlaySound(deathSound);
-                anim.SetTrigger("die");
-                gameOverText.SetActive(true);
-                GetComponent<PlayerMovement>().enabled = false;
-                dead = true;
-            }
         }
     }
     public void AddHealth(float _value)

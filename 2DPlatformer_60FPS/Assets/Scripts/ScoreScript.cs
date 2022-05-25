@@ -13,7 +13,7 @@ public class ScoreScript : MonoBehaviour
     void Start()
     {
         ScoreNum = 0;
-        MyScoreText.text = "Score : " + ScoreNum;
+        MyScoreText.text = "" + ScoreNum;
     }
 
     // Update is called once per frame
@@ -26,7 +26,7 @@ public class ScoreScript : MonoBehaviour
             SoundManager.instance.PlaySound(coinCollect);
             ScoreNum += 1;
             Destroy(Coin.gameObject);
-            MyScoreText.text = "Score : " + ScoreNum;
+            MyScoreText.text = "" + ScoreNum;
         }
        
     }
